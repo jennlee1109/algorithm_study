@@ -3,17 +3,10 @@ n = int(input())
 weights = [int(input()) for _ in range(n)]
 weights.sort()
 
-result = weights[0] * n
+result = []
 
-while True:
-    if n == 1:
-        break
-
-    weights.pop(0)
+for i in range(n):
+    result.append(weights[i] * n)
     n -= 1
-    if result > weights[0] * n:
-        break
 
-    result = weights[0] * n
-
-print(result)
+print(max(result))
