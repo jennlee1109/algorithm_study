@@ -1,2 +1,2 @@
 # algorithm_study
-Study algorithm alone.
+Studying algorithm alone.
