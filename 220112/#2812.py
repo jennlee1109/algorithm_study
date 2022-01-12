@@ -3,21 +3,14 @@ n, k = map(int, input().split())
 
 num = sys.stdin.readline()
 num_list = [int(num[i]) for i in range(n)]
-
-result = ''
+stack = []
 cnt = 0
-i = 0
 
-while i < len(num_list)-1:
-    if cnt == k:
-        break
-    if num_list[i] < num_list[i+1]:
-        num_list.pop(i)
+for i in range(n):
+    while cnt < k and stack and stack[-1] < num_list[i]:
+        stack.pop()
         cnt += 1
-        i = 0
-    else:
-        i += 1
+    stack.append(num_list[i])
 
-
-for i in range(len(num_list)):
-    print(num_list[i],end="")
+for s in stack[]:
+    print(s,end="")
