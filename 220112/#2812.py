@@ -12,5 +12,5 @@ for i in range(n):
         cnt += 1
     stack.append(num_list[i])
 
-for s in stack[]:
+for s in stack[:n-k]:
     print(s,end="")
