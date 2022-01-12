@@ -1,25 +1,30 @@
-n, k = map(int, input().split())
+import heapq
+import sys
+n, k = map(int, sys.stdin.readline().split())
 
 jewelry_list = []
 bag_list = []
 total = 0
 
 for _ in range(n):
-    weight, cost = map(int, input().split())
+    weight, cost = map(int, sys.stdin.readline().split())
     jewelry_list.append((weight, cost))
 
-jewelry_list.sort(reverse=True, key=lambda x:(x[1], x[0]))
+jewelry_list.sort()
+bag_list = [int(sys.stdin.readline()) for _ in range(k)]
+bag_list.sort()
 
-bag_list = [int(input()) for _ in range(k)]
+capable_heap = []
 
 for i in range(k):
-    idx = 0
-    while idx < n:
-        if bag_list[i] >= jewelry_list[idx][0]:
-            total += jewelry_list[idx][1]
-            jewelry_list.pop(idx)
-            n -= 1
-            break
-        idx += 1
+    while jewelry_list and bag_list[i] >= jewelry_list[0][0]:
+        heapq.heappush(capable_heap, -jewelry_list[0][1])
+        heapq.heappop(jewelry_list)
+
+    if capable_heap:
+        total += -heapq.heappop(capable_heap)
+    elif not jewelry_list:
+        break
+
 
 print(total)
